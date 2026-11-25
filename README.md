@@ -2,7 +2,7 @@
 
 A professional, modern website template for a web design business that helps local businesses build their online presence. This responsive site showcases services, pricing, and client account management.
 
-🌐 **[View Live Website](https://AB00999.github.io/local-business-website/)**
+🌐 **[View Live Website](https://AB00999.github.io/moonred-studio/)**
 
 ## Features
 

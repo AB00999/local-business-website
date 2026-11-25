@@ -24,7 +24,8 @@ A professional, modern website template for a web design business that helps loc
 🔐 **Client Authentication**
 - Login and signup functionality
 - Client accounts with persistent storage
-- Secure credential handling
+- Secure credential handling with password recovery
+- Forgot password & password reset features
 
 📧 **Contact & Conversion**
 - Direct email contact link
@@ -37,6 +38,50 @@ A professional, modern website template for a web design business that helps loc
 2. Navigate through sections: Services → Pricing → Contact
 3. Click the **Login** button in the top right to test authentication
 4. Email inquiries go to: **abdouls0509@gmail.com**
+
+## Account Management
+
+### Creating an Account
+
+1. Click the **Login** button in the navigation bar
+2. In the modal, click **"Sign up"** to create a new account
+3. Fill in the following fields:
+   - **Username**: Choose a unique username
+   - **Password**: Create a password (minimum 6 characters)
+   - **Email**: Provide your email address (used for password recovery)
+4. Click **"Create Account"**
+5. After successful account creation, you'll be automatically logged in
+6. The Login button will now display your username with a Logout option
+
+### Logging In
+
+1. Click the **Login** button in the navigation bar
+2. Enter your username and password
+3. Click **"Login"**
+4. You're now logged in! Your username appears in the top right
+
+### Forgot Password
+
+1. Click the **Login** button
+2. Click **"Forgot password?"** link
+3. Enter your username or email address
+4. Click **"Send Reset Link"**
+5. You'll be guided to create a new password
+6. Enter your new password (minimum 6 characters) and confirm it
+7. Click **"Reset Password"**
+8. Log in with your new password
+
+### Logging Out
+
+Simply click your username in the top right navigation and select **Logout**. This will clear your session and return you to the login screen.
+
+## Account Features
+
+✅ **Secure Storage** – Passwords are stored with usernames in browser localStorage
+✅ **Email Recovery** – Password reset uses email verification
+✅ **Password Validation** – Minimum 6 character requirement
+✅ **Session Persistence** – Stay logged in during your browser session
+✅ **User-Friendly** – Intuitive forms with clear navigation between login/signup/reset
 
 ## Customization
 

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Moon Red Web Studio creates modern, mobile-friendly websites for local businesses.">
+  <title>Moon Red Web Studio | Websites for local businesses</title>
+  <style>
+    :root { color-scheme: dark; --bg: #101013; --panel: #1a1a1e; --muted: #b7b2b1; --red: #ef5c50; --line: #383333; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: #f9f4f1; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin: auto; }
+    header { border-bottom: 1px solid var(--line); }
+    nav { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; letter-spacing: -.03em; }
+    .brand-mark { width: 25px; height: 25px; border-radius: 50%; background: var(--red); box-shadow: inset -7px -3px 0 #9c2c2d; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { text-decoration: none; color: #d7ceca; font-size: .9rem; }
+    .nav-links a:hover, .text-link:hover { color: var(--red); }
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; padding: 105px 0 110px; }
+    .eyebrow { color: #ff8c7e; text-transform: uppercase; letter-spacing: .16em; font-weight: 750; font-size: .72rem; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(3rem, 6vw, 5.6rem); line-height: 1.04; letter-spacing: -.065em; margin: 18px 0 24px; }
+    h1 span { color: #ff8173; }
+    .lead { color: var(--muted); font-size: 1.1rem; max-width: 35rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 32px; }
+    .button { display: inline-block; padding: 13px 22px; background: var(--red); color: #160c0c; border-radius: 6px; font-weight: 750; text-decoration: none; }
+    .button:hover { background: #ff8173; }
+    .text-link { padding: 12px 4px; text-decoration: none; font-weight: 650; }
+    .art { position: relative; height: 390px; border: 1px solid #553b39; border-radius: 10px; overflow: hidden; background: radial-gradient(circle at 50% 45%, #6f302f, #241a1d 56%, #18171a 82%); display: grid; place-items: center; }
+    .moon { width: min(65%, 265px); aspect-ratio: 1; border-radius: 50%; background: linear-gradient(140deg, #ffad94, #eb6554 48%, #9d292e); box-shadow: 0 0 80px #ec5d5145, inset -24px -24px 30px #6c182e66; }
+    .art-label { position: absolute; bottom: 20px; left: 22px; right: 22px; display: flex; justify-content: space-between; color: #f2c0b5; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+    section { padding: 90px 0; }
+    .section-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 38px; }
+    h2 { font-size: clamp(2.2rem, 4vw, 3.5rem); letter-spacing: -.05em; line-height: 1.1; margin-bottom: 0; }
+    .section-heading p { color: var(--muted); max-width: 30rem; margin-bottom: 0; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { padding: 28px; background: var(--panel); border: 1px solid #302c2c; border-radius: 8px; }
+    .number { display: inline-block; color: #ff8c7e; font-size: .8rem; font-weight: 700; margin-bottom: 36px; }
+    h3 { margin-bottom: 10px; font-size: 1.2rem; }
+    .card p, .steps p { color: var(--muted); margin: 0; font-size: .95rem; }
+    .process { border-top: 1px solid var(--line); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+    .steps h3 { border-top: 1px solid #755048; padding-top: 20px; }
+    .contact { padding-top: 20px; }
+    .contact-box { background: #f3e7df; color: #221b1b; border-radius: 10px; padding: clamp(32px, 6vw, 70px); display: flex; justify-content: space-between; align-items: end; gap: 32px; }
+    .contact-box p { max-width: 36rem; color: #655652; margin: 16px 0 0; }
+    .contact-note { min-width: 190px; font-size: .9rem; font-weight: 650; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); padding: 26px 0; font-size: .85rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    a:focus-visible { outline: 3px solid #ffab9d; outline-offset: 4px; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 32px, 1120px); }
+      nav { flex-wrap: wrap; padding: 20px 0; }
+      .nav-links { gap: 16px; }
+      .hero, .section-heading { grid-template-columns: 1fr; }
+      .hero { gap: 38px; padding: 70px 0; }
+      .art { height: 300px; }
+      section { padding: 65px 0; }
+      .cards, .steps { grid-template-columns: 1fr; }
+      .contact-box { align-items: start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> Moon Red Web Studio</a>
+      <div class="nav-links"><a href="#services">Services</a><a href="#process">How it works</a><a href="#contact">Contact</a></div>
+    </nav>
+  </header>
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">Websites for local businesses</div>
+        <h1>Make a great <span>first impression.</span></h1>
+        <p class="lead">Your business deserves a website that looks professional, works on every screen, and makes it easy for customers to find what they need.</p>
+        <div class="actions"><a class="button" href="#contact">Start a conversation</a><a class="text-link" href="#services">Explore services &rarr;</a></div>
+      </div>
+      <div class="art" aria-hidden="true"><div class="moon"></div><div class="art-label"><span>Built for your business</span><span>Made to stand out</span></div></div>
+    </div>
+    <section id="services">
+      <div class="wrap">
+        <div class="section-heading"><div><div class="eyebrow">What we offer</div><h2>A better home for your business online.</h2></div><p>From a clear introduction to the details your customers need, a thoughtful website helps your business show up with confidence.</p></div>
+        <div class="cards">
+          <article class="card"><span class="number">01 / DESIGN</span><h3>Professional design</h3><p>A clean, welcoming website shaped around your business and the people you serve.</p></article>
+          <article class="card"><span class="number">02 / MOBILE</span><h3>Made for every screen</h3><p>A responsive layout that is easy to explore on a phone, tablet, or computer.</p></article>
+          <article class="card"><span class="number">03 / CLARITY</span><h3>Customer-ready content</h3><p>Put your services, business details, and next steps where visitors can find them.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="process" id="process">
+      <div class="wrap"><div class="eyebrow">A simple process</div><h2>From idea to online.</h2>
+        <div class="steps">
+          <div><h3>1. Tell us your story</h3><p>Share what your business does, who you serve, and what you want your website to achieve.</p></div>
+          <div><h3>2. Shape your site</h3><p>Bring your services and personality together in a clear, easy-to-use design.</p></div>
+          <div><h3>3. Get ready to launch</h3><p>Review the details and prepare your new online home for your customers.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact">
+      <div class="wrap"><div class="contact-box"><div><div class="eyebrow">Let's build something good</div><h2>Ready to show up online?</h2><p>Whether you're starting fresh or refreshing an existing website, Moon Red Web Studio is here to help you take the next step.</p></div><div class="contact-note">Contact details coming soon.</div></div></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>&copy; Moon Red Web Studio</span><span>Thoughtful websites for local businesses.</span></div></footer>
+</body>
+</html>

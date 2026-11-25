@@ -48,6 +48,14 @@
     .contact-box { background: #f3e7df; color: #221b1b; border-radius: 10px; padding: clamp(32px, 6vw, 70px); display: flex; justify-content: space-between; align-items: end; gap: 32px; }
     .contact-box p { max-width: 36rem; color: #655652; margin: 16px 0 0; }
     .contact-note { min-width: 190px; font-size: .9rem; font-weight: 650; }
+    .gated-content { display: none; }
+    .gated-content.active { display: block; }
+    .login-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 150px 0; text-align: center; }
+    .login-gate.hidden { display: none; }
+    .gate-icon { font-size: 4rem; margin-bottom: 24px; }
+    .gate-text { color: var(--muted); font-size: 1.1rem; max-width: 500px; margin: 0 0 32px; }
+    .gate-cta { display: inline-block; padding: 15px 36px; background: var(--red); color: #160c0c; border-radius: 6px; font-weight: 750; text-decoration: none; cursor: pointer; border: none; font-size: 1rem; }
+    .gate-cta:hover { background: #ff8173; }
     .pricing { margin-top: 40px; }
     .pricing-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
     .price-card { background: var(--panel); border: 1px solid #302c2c; border-radius: 8px; padding: 32px; }
@@ -109,7 +117,7 @@
       </div>
       <div class="art" aria-hidden="true"><div class="moon"></div><div class="art-label"><span>Built for your business</span><span>Made to stand out</span></div></div>
     </div>
-    <section id="services">
+    <section id="services" class="gated-content">
       <div class="wrap">
         <div class="section-heading"><div><div class="eyebrow">What we offer</div><h2>A better home for your business online.</h2></div><p>From a clear introduction to the details your customers need, a thoughtful website helps your business show up with confidence.</p></div>
         <div class="cards">
@@ -119,7 +127,13 @@
         </div>
       </div>
     </section>
-    <section class="process" id="process">
+    <section class="login-gate" id="services-gate">
+      <div class="gate-icon">🔒</div>
+      <h2 style="color: #f9f4f1; margin: 0;">See Our Services</h2>
+      <p class="gate-text">Create an account or login to explore our services and see how we can help your business stand out online.</p>
+      <button class="gate-cta" id="gateLoginBtn">Login or Sign Up</button>
+    </section>
+    <section class="process gated-content" id="process">
       <div class="wrap"><div class="eyebrow">A simple process</div><h2>From idea to online.</h2>
         <div class="steps">
           <div><h3>1. Tell us your story</h3><p>Share what your business does, who you serve, and what you want your website to achieve.</p></div>
@@ -131,7 +145,7 @@
     <section class="contact" id="contact">
       <div class="wrap"><div class="contact-box"><div><div class="eyebrow">Let's build something good</div><h2>Ready to show up online?</h2><p>Whether you're starting fresh or refreshing an existing website, Moon Red Web Studio is here to help you take the next step.</p><p style="margin-top: 24px;"><a class="cta-email" href="mailto:abdouls0509@gmail.com">Email us at abdouls0509@gmail.com</a></p></div><div class="contact-note">We'll respond within 24 hours.</div></div></div>
     </section>
-    <section id="pricing">
+    <section id="pricing" class="gated-content">
       <div class="wrap"><div class="eyebrow">Pricing</div><h2>Simple plans that fit your business.</h2><p class="lead">Get a professional website without breaking the bank.</p>
         <div class="pricing-cards">
           <div class="price-card"><h3>Starter</h3><div class="price">$499</div><div class="price-desc">Perfect for new businesses</div><ul class="price-list"><li>Up to 5 pages</li><li>Mobile responsive</li><li>Contact form</li><li>Basic SEO setup</li><li>1 month of support</li></ul></div>
@@ -139,6 +153,12 @@
         </div>
         <p style="color: var(--muted); margin-top: 32px; text-align: center;">Custom projects available. <a class="cta-email" href="mailto:abdouls0509@gmail.com">Get a quote today</a>.</p>
       </div>
+    </section>
+    <section class="login-gate" id="pricing-gate">
+      <div class="gate-icon">💰</div>
+      <h2 style="color: #f9f4f1; margin: 0;">View Pricing</h2>
+      <p class="gate-text">Login to see our transparent pricing and find the perfect plan for your business needs.</p>
+      <button class="gate-cta" id="gatePricingBtn">Login or Sign Up</button>
     </section>
   </main>
   <footer><div class="wrap footer-inner"><span>&copy; Moon Red Web Studio</span><span>Thoughtful websites for local businesses.</span></div></footer>
@@ -388,16 +408,35 @@
 
     function updateLoginButton() {
       const loggedInUser = localStorage.getItem('loggedInUser');
+      const gatedContent = document.querySelectorAll('.gated-content');
+      const gates = document.querySelectorAll('.login-gate');
+      
       if (loggedInUser) {
         loginBtn.textContent = `${loggedInUser} (Logout)`;
         loginBtn.onclick = () => {
           localStorage.removeItem('loggedInUser');
           location.reload();
         };
+        // Show gated content and hide gates
+        gatedContent.forEach(el => el.classList.add('active'));
+        gates.forEach(el => el.classList.add('hidden'));
+      } else {
+        loginBtn.textContent = 'Login';
+        loginBtn.onclick = () => modal.classList.add('active');
+        // Hide gated content and show gates
+        gatedContent.forEach(el => el.classList.remove('active'));
+        gates.forEach(el => el.classList.remove('hidden'));
       }
     }
 
     updateLoginButton();
+    
+    // Add gate button listeners
+    const gateLoginBtn = document.getElementById('gateLoginBtn');
+    const gatePricingBtn = document.getElementById('gatePricingBtn');
+    
+    if (gateLoginBtn) gateLoginBtn.addEventListener('click', () => modal.classList.add('active'));
+    if (gatePricingBtn) gatePricingBtn.addEventListener('click', () => modal.classList.add('active'));
   </script>
 </body>
 </html>

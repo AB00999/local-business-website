@@ -72,6 +72,9 @@
     .modal-button { background: var(--red); color: #160c0c; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 750; cursor: pointer; width: 100%; }
     .modal-button:hover { background: #ff8173; }
     .modal-toggle { text-align: center; margin-top: 16px; font-size: .9rem; color: var(--muted); }
+    .modal-link { color: #ff8173; text-decoration: none; font-weight: 650; cursor: pointer; }
+    .modal-link:hover { color: #ffab9d; }
+    .back-link { display: inline-block; margin-bottom: 24px; font-size: .9rem; }
     footer { border-top: 1px solid var(--line); color: var(--muted); padding: 26px 0; font-size: .85rem; }
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     a:focus-visible { outline: 3px solid #ffab9d; outline-offset: 4px; }
@@ -142,7 +145,9 @@
   <div class="modal" id="loginModal">
     <div class="modal-content">
       <button class="modal-close" id="closeModal">&times;</button>
-      <h2 style="margin-top: 0; color: #f9f4f1;">Client Login</h2>
+      
+      <!-- Login Form -->
+      <h2 style="margin-top: 0; color: #f9f4f1; margin-bottom: 24px;" id="formTitle">Client Login</h2>
       <form id="loginForm" style="display: block;">
         <div class="form-group">
           <label for="username">Username</label>
@@ -154,6 +159,12 @@
         </div>
         <button type="submit" class="modal-button">Login</button>
       </form>
+      <div class="modal-toggle" id="loginToggle" style="display: block;">
+        Don't have an account? <a class="modal-link" id="toggleToSignup" style="cursor: pointer;">Sign up</a><br>
+        <a class="modal-link" id="toggleToForgot" style="cursor: pointer; margin-top: 8px; display: inline-block;">Forgot password?</a>
+      </div>
+
+      <!-- Signup Form -->
       <form id="signupForm" style="display: none;">
         <div class="form-group">
           <label for="signup-username">Create Username</label>
@@ -161,12 +172,44 @@
         </div>
         <div class="form-group">
           <label for="signup-password">Create Password</label>
-          <input type="password" id="signup-password" name="password" required placeholder="Choose a password">
+          <input type="password" id="signup-password" name="password" required placeholder="Choose a password (min 6 characters)">
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" name="email" required placeholder="Your email address">
         </div>
         <button type="submit" class="modal-button">Create Account</button>
       </form>
-      <div class="modal-toggle">
-        <span id="toggleText">Don't have an account? <a class="login-link" id="toggleForm" style="cursor: pointer;">Sign up</a></span>
+      <div class="modal-toggle" id="signupToggle" style="display: none;">
+        Already have an account? <a class="modal-link" id="toggleToLogin" style="cursor: pointer;">Login</a>
+      </div>
+
+      <!-- Forgot Password Form -->
+      <form id="forgotForm" style="display: none;">
+        <div class="form-group">
+          <label for="forgot-username">Username or Email</label>
+          <input type="text" id="forgot-username" name="username" required placeholder="Enter your username or email">
+        </div>
+        <button type="submit" class="modal-button">Send Reset Link</button>
+      </form>
+      <div class="modal-toggle" id="forgotToggle" style="display: none;">
+        <a class="modal-link" id="toggleToLoginFromForgot" style="cursor: pointer;">← Back to Login</a>
+      </div>
+
+      <!-- Reset Password Form -->
+      <form id="resetForm" style="display: none;">
+        <div class="form-group">
+          <label for="reset-password">New Password</label>
+          <input type="password" id="reset-password" name="password" required placeholder="Enter new password (min 6 characters)">
+        </div>
+        <div class="form-group">
+          <label for="reset-confirm">Confirm Password</label>
+          <input type="password" id="reset-confirm" name="confirm" required placeholder="Confirm your new password">
+        </div>
+        <button type="submit" class="modal-button">Reset Password</button>
+      </form>
+      <div class="modal-toggle" id="resetToggle" style="display: none;">
+        <a class="modal-link" id="toggleToLoginFromReset" style="cursor: pointer;">← Back to Login</a>
       </div>
     </div>
   </div>
@@ -174,10 +217,40 @@
     const modal = document.getElementById('loginModal');
     const loginBtn = document.getElementById('loginBtn');
     const closeBtn = document.getElementById('closeModal');
-    const toggleBtn = document.getElementById('toggleForm');
+    const formTitle = document.getElementById('formTitle');
+    
+    // Form elements
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
-    const toggleText = document.getElementById('toggleText');
+    const forgotForm = document.getElementById('forgotForm');
+    const resetForm = document.getElementById('resetForm');
+    
+    // Toggle buttons
+    const toggleToSignup = document.getElementById('toggleToSignup');
+    const toggleToLogin = document.getElementById('toggleToLogin');
+    const toggleToForgot = document.getElementById('toggleToForgot');
+    const toggleToLoginFromForgot = document.getElementById('toggleToLoginFromForgot');
+    const toggleToLoginFromReset = document.getElementById('toggleToLoginFromReset');
+    
+    // Toggle sections
+    const loginToggle = document.getElementById('loginToggle');
+    const signupToggle = document.getElementById('signupToggle');
+    const forgotToggle = document.getElementById('forgotToggle');
+    const resetToggle = document.getElementById('resetToggle');
+
+    function showForm(formToShow, titleText) {
+      loginForm.style.display = 'none';
+      signupForm.style.display = 'none';
+      forgotForm.style.display = 'none';
+      resetForm.style.display = 'none';
+      loginToggle.style.display = 'none';
+      signupToggle.style.display = 'none';
+      forgotToggle.style.display = 'none';
+      resetToggle.style.display = 'none';
+      
+      formToShow.style.display = 'block';
+      formTitle.textContent = titleText;
+    }
 
     loginBtn.addEventListener('click', () => modal.classList.add('active'));
     closeBtn.addEventListener('click', () => modal.classList.remove('active'));
@@ -185,41 +258,146 @@
       if (e.target === modal) modal.classList.remove('active');
     });
 
-    toggleBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
-      signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
-      toggleText.innerHTML = loginForm.style.display === 'block' 
-        ? "Don't have an account? <a class='login-link' id='toggleForm' style='cursor: pointer;'>Sign up</a>"
-        : "Already have an account? <a class='login-link' id='toggleForm' style='cursor: pointer;'>Login</a>";
-      document.getElementById('toggleForm').addEventListener('click', arguments.callee);
+    // Toggle between login and signup
+    toggleToSignup.addEventListener('click', () => {
+      showForm(signupForm, 'Create Account');
+      signupToggle.style.display = 'block';
     });
 
+    toggleToLogin.addEventListener('click', () => {
+      showForm(loginForm, 'Client Login');
+      loginToggle.style.display = 'block';
+    });
+
+    // Toggle to forgot password
+    toggleToForgot.addEventListener('click', () => {
+      showForm(forgotForm, 'Reset Password');
+      forgotToggle.style.display = 'block';
+    });
+
+    // Toggle back from forgot
+    toggleToLoginFromForgot.addEventListener('click', () => {
+      showForm(loginForm, 'Client Login');
+      loginToggle.style.display = 'block';
+    });
+
+    // Toggle back from reset
+    toggleToLoginFromReset.addEventListener('click', () => {
+      showForm(loginForm, 'Client Login');
+      loginToggle.style.display = 'block';
+    });
+
+    // Login form submission
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const username = document.getElementById('username').value;
-      localStorage.setItem('loggedInUser', username);
-      alert(`Welcome back, ${username}!`);
-      modal.classList.remove('active');
-      loginForm.reset();
+      const password = document.getElementById('password').value;
+      
+      const storedPassword = localStorage.getItem(`pass_${username}`);
+      if (storedPassword && storedPassword === password) {
+        localStorage.setItem('loggedInUser', username);
+        alert(`Welcome back, ${username}!`);
+        modal.classList.remove('active');
+        loginForm.reset();
+        updateLoginButton();
+      } else {
+        alert('Invalid username or password');
+      }
     });
 
+    // Signup form submission
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const username = document.getElementById('signup-username').value;
+      const password = document.getElementById('signup-password').value;
+      const email = document.getElementById('signup-email').value;
+      
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters');
+        return;
+      }
+      
+      if (localStorage.getItem(`pass_${username}`)) {
+        alert('Username already exists. Please choose another.');
+        return;
+      }
+      
+      localStorage.setItem(`pass_${username}`, password);
+      localStorage.setItem(`email_${username}`, email);
       localStorage.setItem('loggedInUser', username);
       alert(`Account created! Welcome, ${username}!`);
       modal.classList.remove('active');
       signupForm.reset();
+      updateLoginButton();
     });
 
-    if (localStorage.getItem('loggedInUser')) {
-      loginBtn.textContent = `${localStorage.getItem('loggedInUser')} (Logout)`;
-      loginBtn.addEventListener('click', () => {
-        localStorage.removeItem('loggedInUser');
-        location.reload();
-      });
+    // Forgot password form submission
+    forgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const usernameOrEmail = document.getElementById('forgot-username').value;
+      
+      let foundUsername = null;
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('email_')) {
+          const username = key.replace('email_', '');
+          const storedEmail = localStorage.getItem(key);
+          if (username === usernameOrEmail || storedEmail === usernameOrEmail) {
+            foundUsername = username;
+            break;
+          }
+        }
+      }
+      
+      if (foundUsername) {
+        localStorage.setItem('resetUsername', foundUsername);
+        alert(`Password reset link sent! (Demo: Use username '${foundUsername}' to reset)`);
+        showForm(resetForm, 'Create New Password');
+        resetToggle.style.display = 'block';
+        forgotForm.reset();
+      } else {
+        alert('Username or email not found');
+      }
+    });
+
+    // Reset password form submission
+    resetForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newPassword = document.getElementById('reset-password').value;
+      const confirmPassword = document.getElementById('reset-confirm').value;
+      
+      if (newPassword.length < 6) {
+        alert('Password must be at least 6 characters');
+        return;
+      }
+      
+      if (newPassword !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+      
+      const username = localStorage.getItem('resetUsername');
+      localStorage.setItem(`pass_${username}`, newPassword);
+      localStorage.removeItem('resetUsername');
+      
+      alert('Password reset successfully! Please login with your new password.');
+      showForm(loginForm, 'Client Login');
+      loginToggle.style.display = 'block';
+      resetForm.reset();
+    });
+
+    function updateLoginButton() {
+      const loggedInUser = localStorage.getItem('loggedInUser');
+      if (loggedInUser) {
+        loginBtn.textContent = `${loggedInUser} (Logout)`;
+        loginBtn.onclick = () => {
+          localStorage.removeItem('loggedInUser');
+          location.reload();
+        };
+      }
     }
+
+    updateLoginButton();
   </script>
 </body>
 </html>

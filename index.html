@@ -58,6 +58,20 @@
     .price-list li { padding: 8px 0; border-bottom: 1px solid #383333; }
     .price-list li:before { content: "✓ "; color: #ff8c7e; }
     .cta-email { color: #ff8173; text-decoration: none; font-weight: 700; }
+    .login-link { cursor: pointer; color: #ff8173; text-decoration: none; font-weight: 650; }
+    .login-link:hover { color: #ffab9d; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1000; align-items: center; justify-content: center; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--panel); border: 1px solid #302c2c; border-radius: 10px; padding: 48px; max-width: 400px; width: 90%; position: relative; }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #d7ceca; font-size: 28px; cursor: pointer; }
+    .modal-close:hover { color: var(--red); }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 650; color: #f9f4f1; }
+    .form-group input { width: 100%; padding: 12px; background: #0f0f12; border: 1px solid #383333; border-radius: 6px; color: #f9f4f1; font-size: 1rem; }
+    .form-group input:focus { outline: none; border-color: var(--red); }
+    .modal-button { background: var(--red); color: #160c0c; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 750; cursor: pointer; width: 100%; }
+    .modal-button:hover { background: #ff8173; }
+    .modal-toggle { text-align: center; margin-top: 16px; font-size: .9rem; color: var(--muted); }
     footer { border-top: 1px solid var(--line); color: var(--muted); padding: 26px 0; font-size: .85rem; }
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     a:focus-visible { outline: 3px solid #ffab9d; outline-offset: 4px; }
@@ -79,7 +93,7 @@
   <header>
     <nav class="wrap" aria-label="Main navigation">
       <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> Moon Red Web Studio</a>
-      <div class="nav-links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+      <div class="nav-links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a class="login-link" id="loginBtn">Login</a></div>
     </nav>
   </header>
   <main id="top">
@@ -125,5 +139,87 @@
     </section>
   </main>
   <footer><div class="wrap footer-inner"><span>&copy; Moon Red Web Studio</span><span>Thoughtful websites for local businesses.</span></div></footer>
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <h2 style="margin-top: 0; color: #f9f4f1;">Client Login</h2>
+      <form id="loginForm" style="display: block;">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+        </div>
+        <button type="submit" class="modal-button">Login</button>
+      </form>
+      <form id="signupForm" style="display: none;">
+        <div class="form-group">
+          <label for="signup-username">Create Username</label>
+          <input type="text" id="signup-username" name="username" required placeholder="Choose a username">
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Create Password</label>
+          <input type="password" id="signup-password" name="password" required placeholder="Choose a password">
+        </div>
+        <button type="submit" class="modal-button">Create Account</button>
+      </form>
+      <div class="modal-toggle">
+        <span id="toggleText">Don't have an account? <a class="login-link" id="toggleForm" style="cursor: pointer;">Sign up</a></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const modal = document.getElementById('loginModal');
+    const loginBtn = document.getElementById('loginBtn');
+    const closeBtn = document.getElementById('closeModal');
+    const toggleBtn = document.getElementById('toggleForm');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const toggleText = document.getElementById('toggleText');
+
+    loginBtn.addEventListener('click', () => modal.classList.add('active'));
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
+      signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
+      toggleText.innerHTML = loginForm.style.display === 'block' 
+        ? "Don't have an account? <a class='login-link' id='toggleForm' style='cursor: pointer;'>Sign up</a>"
+        : "Already have an account? <a class='login-link' id='toggleForm' style='cursor: pointer;'>Login</a>";
+      document.getElementById('toggleForm').addEventListener('click', arguments.callee);
+    });
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      localStorage.setItem('loggedInUser', username);
+      alert(`Welcome back, ${username}!`);
+      modal.classList.remove('active');
+      loginForm.reset();
+    });
+
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('signup-username').value;
+      localStorage.setItem('loggedInUser', username);
+      alert(`Account created! Welcome, ${username}!`);
+      modal.classList.remove('active');
+      signupForm.reset();
+    });
+
+    if (localStorage.getItem('loggedInUser')) {
+      loginBtn.textContent = `${localStorage.getItem('loggedInUser')} (Logout)`;
+      loginBtn.addEventListener('click', () => {
+        localStorage.removeItem('loggedInUser');
+        location.reload();
+      });
+    }
+  </script>
 </body>
 </html>

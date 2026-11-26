@@ -56,6 +56,8 @@
     .quote-field textarea { min-height: 110px; resize: vertical; }
     .quote-form .button { grid-column: 1 / -1; border: 0; justify-self: start; }
     .quote-form-note { grid-column: 1 / -1; margin: 0; font-size: .78rem; }
+    .quote-status { grid-column: 1 / -1; min-height: 1.5em; margin: 0; font-weight: 700; }
+    .quote-form .button:disabled { cursor: wait; opacity: .7; }
     .gated-content { display: none; }
     .gated-content.active { display: block; }
     .login-gate { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 150px 0; text-align: center; }
@@ -183,7 +185,9 @@
             <p>Tell me about your business and what you need. I will help you choose the right website for your goals and budget.</p>
             <p class="contact-note">Serving Queens, NYC, and beyond · abdouls0509@gmail.com</p>
           </div>
-          <form class="quote-form" id="quoteForm">
+          <form class="quote-form" id="quoteForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="0897051c-3eed-4361-81a1-2e805098adee">
+            <input type="hidden" name="subject" value="New website quote request from Abdoul Web Studio">
             <div class="quote-field"><label for="quote-name">Your name</label><input id="quote-name" name="name" autocomplete="name" required></div>
             <div class="quote-field"><label for="quote-business">Business name</label><input id="quote-business" name="business" autocomplete="organization" required></div>
             <div class="quote-field"><label for="quote-email">Email</label><input id="quote-email" name="email" type="email" autocomplete="email" required></div>
@@ -192,7 +196,8 @@
             <div class="quote-field"><label for="quote-budget">Budget</label><select id="quote-budget" name="budget" required><option value="">Choose one</option><option>$150–$250</option><option>$300–$499</option><option>$500+</option><option>Not sure yet</option></select></div>
             <div class="quote-field full"><label for="quote-description">Project description</label><textarea id="quote-description" name="description" required></textarea></div>
             <button class="button" type="submit">Get a free quote</button>
-            <p class="quote-form-note">Submitting opens your email app with these details ready to send.</p>
+            <p class="quote-form-note">Your request is sent directly to Abdoul after you submit.</p>
+            <p class="quote-status" id="quoteStatus" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -486,22 +491,36 @@
     if (gatePricingBtn) gatePricingBtn.addEventListener('click', () => modal.classList.add('active'));
 
     const quoteForm = document.getElementById('quoteForm');
-    quoteForm.addEventListener('submit', (event) => {
+    quoteForm.addEventListener('submit', async (event) => {
       event.preventDefault();
       const data = new FormData(quoteForm);
-      const subject = `Website quote request - ${data.get('business')}`;
-      const body = [
-        `Name: ${data.get('name')}`,
-        `Business: ${data.get('business')}`,
-        `Email: ${data.get('email')}`,
-        `Phone: ${data.get('phone') || 'Not provided'}`,
-        `Website type: ${data.get('websiteType')}`,
-        `Budget: ${data.get('budget')}`,
-        '',
-        'Project description:',
-        data.get('description')
-      ].join('\n');
-      window.location.href = `mailto:abdouls0509@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const submitButton = quoteForm.querySelector('button[type="submit"]');
+      const status = document.getElementById('quoteStatus');
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+      status.textContent = '';
+
+      try {
+        const response = await fetch(quoteForm.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'The quote request could not be sent.');
+        }
+
+        quoteForm.reset();
+        status.textContent = 'Thanks! Your website quote request was sent successfully.';
+      } catch (error) {
+        status.textContent = error.message || 'Something went wrong. Please email abdouls0509@gmail.com directly.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Get a free quote';
+      }
     });
   </script>
 </body>

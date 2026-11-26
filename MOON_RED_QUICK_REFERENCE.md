@@ -1,4 +1,4 @@
-# 🌙 MOON RED STUDIO - Quick Reference Card
+# ABDOUL WEB STUDIO - Quick Reference Card
 
 ## 📍 Location
 ```
@@ -6,8 +6,8 @@ C:\Users\Windows\OneDrive\Documents\coding\moonred-studio
 ```
 
 ## 🌐 Website Access
-**Local File:** `C:\Users\Windows\OneDrive\Documents\coding\moonred-studio\index.html`  
-**GitHub Repo:** AB00999/local-business-website  
+**Local File:** `C:\Users\Windows\OneDrive\Documents\coding\moonred-studio\index.html`
+**GitHub Repo:** AB00999/local-business-website
 **Status:** 🟢 Live & Ready
 
 ## 📄 Key Files
@@ -22,7 +22,7 @@ C:\Users\Windows\OneDrive\Documents\coding\moonred-studio
 ## ✨ What's Included
 - ✅ Professional responsive design
 - ✅ 3 Service categories (Design, Mobile, Clarity)
-- ✅ Pricing plans (Starter $499, Professional $999)
+- ✅ Pricing plans (Starter $150, Business $300, Custom $500+)
 - ✅ Contact form (Email: abdouls0509@gmail.com)
 - ✅ Call-to-action sections
 - ✅ Mobile optimized layout
@@ -43,7 +43,7 @@ C:\Users\Windows\OneDrive\Documents\coding\moonred-studio
 7. **Footer** - Copyright & contact info
 
 ## 📞 Contact Information
-**Email:** abdouls0509@gmail.com  
+**Email:** abdouls0509@gmail.com
 **Response Time:** Within 24 hours
 
 ## 🚀 Launch in Browser
@@ -91,8 +91,8 @@ C:\Users\Windows\OneDrive\Documents\coding\moonred-studio
 - Get a quote at abdouls0509@gmail.com
 
 ## 🌍 Web Design Services
-**Company Name:** Moon Red Web Studio  
-**Tagline:** "A better home for your business online"  
+**Company Name:** Abdoul Web Studio
+**Tagline:** "A better home for your business online"
 **Focus:** Local businesses needing professional websites
 
 ### Our Process:
@@ -115,7 +115,7 @@ Website is optimized for:
 - 🖥️ Large screens (1920px+)
 
 ## ✉️ Contact Form Setup
-**Current Status:** "Contact details coming soon" placeholder  
+**Current Status:** "Contact details coming soon" placeholder
 **To Update:** Replace text in index.html with real contact info
 
 ## 🎓 Documentation
@@ -126,12 +126,12 @@ All documentation is in the `moonred-studio` folder:
 - `BRANCH_PROTECTION_SETUP.md` - Security setup
 
 ## 🚨 Important Notes
-⚠️ Branch protection is enabled - DO NOT force push  
-✅ Always create pull requests for changes  
-✅ Status checks must pass before merging  
+⚠️ Branch protection is enabled - DO NOT force push
+✅ Always create pull requests for changes
+✅ Status checks must pass before merging
 
 ## 🎉 Ready to Launch?
-Your Moon Red Studio website is:
+Your Abdoul Web Studio website is:
 - ✅ Responsive
 - ✅ Professional
 - ✅ Protected
@@ -146,8 +146,7 @@ Your Moon Red Studio website is:
 
 ---
 
-**Website Status:** 🟢 LIVE & READY  
-**Last Updated:** 2026-11-25  
-**Owner:** @AB00999  
+**Website Status:** 🟢 LIVE & READY
+**Last Updated:** 2026-11-25
+**Owner:** @AB00999
 **Email:** abdouls0509@gmail.com
-

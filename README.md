@@ -1,8 +1,8 @@
-# Moon Red Web Studio
+# Abdoul Web Studio
 
-A professional, modern website template for a web design business that helps local businesses build their online presence. This responsive site showcases services, pricing, and client account management.
+A professional, responsive website for a web design business that helps small businesses build an affordable online presence. This site showcases services, starting prices, portfolio work, an About section, and a quote request form.
 
-🌐 **[View Live Website](https://AB00999.github.io/moonred-studio/)**
+🌐 **[View Live Website](https://ab00999.github.io/local-business-website/)**
 
 ## Features
 
@@ -17,7 +17,7 @@ A professional, modern website template for a web design business that helps loc
 - Clear value proposition
 
 💰 **Transparent Pricing**
-- Two-tier pricing model (Starter & Professional)
+- Three pricing options (Starter $150, Business $300, Custom starting at $500)
 - Feature breakdowns for each plan
 - Custom project inquiry option
 
@@ -28,16 +28,15 @@ A professional, modern website template for a web design business that helps loc
 - Forgot password & password reset features
 
 📧 **Contact & Conversion**
-- Direct email contact link
-- Contact section with clear call-to-action
-- 24-hour response promise
+- Quote form for customer and project details
+- Direct email contact link and clear call-to-action
 
 ## Quick Start
 
 1. Open `index.html` in any modern web browser
-2. Navigate through sections: Services → Pricing → Contact
-3. Click the **Login** button in the top right to test authentication
-4. Email inquiries go to: **abdouls0509@gmail.com**
+2. Navigate through Services, My Work, Pricing, About, and Contact
+3. Open **My Work** to view the included Family Bank demo
+4. Submit the quote form or email **abdouls0509@gmail.com**
 
 ## Account Management
 
@@ -87,8 +86,8 @@ Simply click your username in the top right navigation and select **Logout**. Th
 
 Before deploying, update:
 - **Email Address**: Replace `abdouls0509@gmail.com` with your business email
-- **Business Name**: "Moon Red Web Studio" appears throughout
-- **Pricing**: Adjust starter ($499) and professional ($999) plans
+- **Business Name**: "Abdoul Web Studio" appears throughout
+- **Pricing**: Adjust Starter ($150), Business ($300), and Custom ($500+) starting prices
 - **Services & Features**: Edit descriptions in the Services and Pricing sections
 
 ## Browser Support
@@ -112,9 +111,9 @@ This is a static website and can be hosted on:
 - Netlify
 - Any web hosting provider
 
-## About Moon Red Web Studio
+## About Abdoul Web Studio
 
-Moon Red Web Studio creates thoughtful, professional websites for local businesses that want to stand out online. From design to launch, we help you build a web presence that converts visitors into customers.
+Abdoul Web Studio creates affordable, professional websites for small businesses in Queens, NYC, and beyond.
 
 **Ready to get started?** Email us at **abdouls0509@gmail.com** or sign up as a client on the website.
 

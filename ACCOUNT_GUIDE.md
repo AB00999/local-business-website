@@ -1,5 +1,7 @@
 # Moon Red Web Studio - Account Management Guide
 
+> **Archived and unsafe:** The browser-only login described below is temporarily hidden. It stored passwords in plain text and did not send or verify reset emails. Do not use it for real accounts. Anyone who reused a password should change it wherever else it was used. Clear this site's browser data to remove its locally stored account information. A secure replacement is being prepared.
+
 This guide explains how to use the client account features on the Moon Red Web Studio website.
 
 ## 🎯 Overview

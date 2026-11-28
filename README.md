@@ -22,10 +22,8 @@ A professional, responsive website for a web design business that helps small bu
 - Custom project inquiry option
 
 🔐 **Client Authentication**
-- Login and signup functionality
-- Client accounts with persistent storage
-- Secure credential handling with password recovery
-- Forgot password & password reset features
+- Temporarily unavailable while a secure account system is being prepared.
+- The previous browser-only login stored passwords in plain text and did not verify password resets. Do not use it for real accounts.
 
 📧 **Contact & Conversion**
 - Quote form for customer and project details
@@ -40,47 +38,9 @@ A professional, responsive website for a web design business that helps small bu
 
 ## Account Management
 
-### Creating an Account
+Client login and signup are temporarily hidden while a secure replacement is being prepared. The quote form remains available.
 
-1. Click the **Login** button in the navigation bar
-2. In the modal, click **"Sign up"** to create a new account
-3. Fill in the following fields:
-   - **Username**: Choose a unique username
-   - **Password**: Create a password (minimum 6 characters)
-   - **Email**: Provide your email address (used for password recovery)
-4. Click **"Create Account"**
-5. After successful account creation, you'll be automatically logged in
-6. The Login button will now display your username with a Logout option
-
-### Logging In
-
-1. Click the **Login** button in the navigation bar
-2. Enter your username and password
-3. Click **"Login"**
-4. You're now logged in! Your username appears in the top right
-
-### Forgot Password
-
-1. Click the **Login** button
-2. Click **"Forgot password?"** link
-3. Enter your username or email address
-4. Click **"Send Reset Link"**
-5. You'll be guided to create a new password
-6. Enter your new password (minimum 6 characters) and confirm it
-7. Click **"Reset Password"**
-8. Log in with your new password
-
-### Logging Out
-
-Simply click your username in the top right navigation and select **Logout**. This will clear your session and return you to the login screen.
-
-## Account Features
-
-✅ **Secure Storage** – Passwords are stored with usernames in browser localStorage
-✅ **Email Recovery** – Password reset uses email verification
-✅ **Password Validation** – Minimum 6 character requirement
-✅ **Session Persistence** – Stay logged in during your browser session
-✅ **User-Friendly** – Intuitive forms with clear navigation between login/signup/reset
+The old login stored passwords unencrypted in each user's browser and did not send or verify password reset emails. Existing browser-only accounts cannot be migrated automatically. Anyone who reused a password there should change it wherever else it was used; clearing this site's browser data removes its locally stored account information.
 
 ## Customization
 
@@ -101,7 +61,7 @@ Before deploying, update:
 
 - **HTML5** – Semantic markup
 - **CSS3** – Modern responsive design with CSS Grid
-- **JavaScript (Vanilla)** – Client-side authentication, no backend required
+- **JavaScript (Vanilla)** – Quote form submission
 
 ## Hosting
 
@@ -115,7 +75,7 @@ This is a static website and can be hosted on:
 
 Abdoul Web Studio creates affordable, professional websites for small businesses in Queens, NYC, and beyond.
 
-**Ready to get started?** Email us at **abdouls0509@gmail.com** or sign up as a client on the website.
+**Ready to get started?** Email us at **abdouls0509@gmail.com** or use the website's quote form.
 
 ---
 

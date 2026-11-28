@@ -1,5 +1,7 @@
 # Moon Red Web Studio - Project Completion Summary
 
+> **Historical document:** The login described below is temporarily hidden because it stored passwords in plain text and did not verify password resets. Its security and account-management claims are not current. A secure replacement is being prepared.
+
 ## ✅ Project Status: COMPLETE & LIVE
 
 **Live Website:** https://AB00999.github.io/local-business-website/  

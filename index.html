@@ -79,7 +79,7 @@
     .login-link { cursor: pointer; color: #ff8173; text-decoration: none; font-weight: 650; }
     .login-link:hover { color: #ffab9d; }
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1000; align-items: center; justify-content: center; }
-    .modal.active { display: flex; }
+    .modal.active:not([hidden]) { display: flex; }
     .modal-content { background: var(--panel); border: 1px solid #302c2c; border-radius: 10px; padding: 48px; max-width: 400px; width: 90%; position: relative; }
     .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #d7ceca; font-size: 28px; cursor: pointer; }
     .modal-close:hover { color: var(--red); }
@@ -115,7 +115,7 @@
   <header>
     <nav class="wrap" aria-label="Main navigation">
       <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> Abdoul Web Studio</a>
-      <div class="nav-links"><a href="#top">Home</a><a href="#services">Services</a><a href="#work">My Work</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a><a class="login-link" id="loginBtn">Login</a></div>
+      <div class="nav-links"><a href="#top">Home</a><a href="#services">Services</a><a href="#work">My Work</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a><a class="login-link" id="loginBtn" hidden>Login</a></div>
     </nav>
   </header>
   <main id="top">
@@ -214,7 +214,7 @@
     </section>
   </main>
   <footer><div class="wrap footer-inner"><span>&copy; Abdoul Web Studio</span><span>Affordable websites for small businesses.</span></div></footer>
-  <div class="modal" id="loginModal">
+  <div class="modal" id="loginModal" hidden>
     <div class="modal-content">
       <button class="modal-close" id="closeModal">&times;</button>
       
